@@ -1,0 +1,16 @@
+import markdown
+import sys
+
+def convert_md_to_html(md_file_path):
+    with open(md_file_path, 'r', encoding='utf-8') as md_file:
+        text = md_file.read()
+        html = markdown.markdown(text)
+    return html
+
+if __name__ == "__main__":
+    md_file_path = sys.argv[1]
+    html_content = convert_md_to_html(md_file_path)
+    html_file_path = md_file_path.rsplit('.', 1)[0] + '.html'
+    with open(html_file_path, 'w', encoding='utf-8') as html_file:
+        html_file.write(html_content)
+    print(f"Markdown файл {md_file_path} конвертирован в HTML {html_file_path}")
